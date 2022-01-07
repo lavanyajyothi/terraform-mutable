@@ -2,4 +2,4 @@ output "ENV" {
   value = var.ENV
 }
 
-varibale "ENV" {}
+variale "ENV" {}
