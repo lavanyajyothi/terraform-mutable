@@ -13,7 +13,7 @@ dev-apply: ## Create Dev Environment
 	@terraform init -backend-config=env/dev-backend.tfvars
 	@terraform apply -auto-approve -var-file=env/dev.tfvars
 
-prod-apply: ## Create Dev Environment
+prod-apply: ## Create prod Environment
 	@terraform init -backend-config=env/prod-backend.tfvars
 	@terraform apply -auto-approve -var-file=env/prod.tfvars
 
