@@ -22,7 +22,7 @@ resource "aws_route_table" "private-route" {
     Name = "private-route"
   }
 }
-ource "aws_route_table" "public-route" {
+resource "aws_route_table" "public-route" {
   vpc_id = aws_vpc.main.id
 
   route =  [
