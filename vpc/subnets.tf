@@ -10,8 +10,8 @@ resource "aws_subnet" "subnets" {
   }
 }
 
-resource "aws_route_table_association" "priv-assoc" {
-  count          = length(aws_subnet.private-subnets.*.id)
-  subnet_id      = element(aws_subnet.private-subnets.*.id, count.index)
-  route_table_id = aws_route_table.private-route.id
+resource "aws_route_table_association" "assoc" {
+  count          = length(aws_subnet.subnets.*.id)
+  subnet_id      = element(aws_subnet.subnets.*.id, count.index)
+  route_table_id = aws_route_table.route.id
 }
