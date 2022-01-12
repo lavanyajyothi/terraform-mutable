@@ -18,10 +18,10 @@ resource "aws_db_parameter_group" "default" {
 }
 
 resource "aws_db_subnet_group" "subnet-group" {
-  name       = "main"
-  subnet_ids = [aws_subnet.frontend.id, aws_subnet.backend.id]
+  name       = "mysqldb-subnet-group-$(var.ENV)"
+  subnet_ids = data.terraform_remote_state.vpc.outputs.PRIVATE_SUBNETTS_IDS
 
   tags = {
-    Name = "My DB subnet group"
+    Name = "mysqldb-subnet-group-$(var.ENV)"
   }
 }
