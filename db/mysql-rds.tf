@@ -1,26 +1,31 @@
- resource "aws_db_instance" "mysql" {
-  allocated_storage    = 10
-  engine               = "mysql"
-  engine_version       = "5.7"
-  instance_class       = "db.t3.micro"
-  name                 = "dummy"
-  username             = "admin"
-  password             = "admmin123"
-  parameter_group_name = "aws_db_parameter_group.pg.name"
-  skip_final_snapshot  = true
-}
+resource "aws_db_instance" "mysql" {
+##  allocated_storage      = 10
+##  identifier             = "mysql-${var.ENV}"
+##  engine                 = "mysql"
+##  engine_version         = "5.7"
+##  instance_class         = "db.t3.micro"
+##  name                   = "dummy"
+##  username               = local.rds_user
+###  password               = local.rds_pass
+##  parameter_group_name   = aws_db_parameter_group.pg.name
+##  skip_final_snapshot    = true
+##  vpc_security_group_ids = [aws_security_group.mysql.id]
+##  db_subnet_group_name   = aws_db_subnet_group.subnet-group.name
+## }
 
-resource "aws_db_parameter_group" "pg" {
-  name   = "mysql-$(var.ENV)-pg"
-  family = "mysql5.7"
+## resource "aws_db_parameter_group" "pg" {
+##  name   = "mysql-${var.ENV}-pg"
+##  family = "mysql5.7"
+##}
 
-}
+##resource "aws_db_subnet_group" "subnet-group" {
+##  name       = "mysqldb-subnet-group-${var.ENV}"
+##  subnet_ids = data.terraform_remote_state.vpc.outputs.PRIVATE_SUBNETS_IDS
 
-resource "aws_db_subnet_group" "subnet-group" {
-  name       = "mysqldb-subnet-group-$(var.ENV)"
-  subnet_ids = data.terraform_remote_state.vpc.outputs.PRIVATE_SUBNETS_IDS
+##  tags = {
+##    Name = "mysqldb-subnet-group-${var.ENV}"
+##  }
+## }
 
-  tags = {
-    Name = "mysqldb-subnet-group-$(var.ENV)"
-  }
-}
+outputt "PRIVATE_SUBNETS" {
+  value = data.terraform_remote_state.vpc.outputs.PRIVATE_SUBNETS_IDS
