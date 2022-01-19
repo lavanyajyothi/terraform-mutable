@@ -1,4 +1,4 @@
-resource "aws_db_instance" "mysql" {
+## resource "aws_db_instance" "mysql" {
 ##  allocated_storage      = 10
 ##  identifier             = "mysql-${var.ENV}"
 ##  engine                 = "mysql"
