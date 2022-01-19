@@ -29,3 +29,4 @@ resource "aws_db_instance" "mysql" {
 
 output "PRIVATE_SUBNETS" {
   value = data.terraform_remote_state.vpc.outputs.PRIVATE_SUBNETS_IDS
+}
