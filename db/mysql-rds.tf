@@ -5,8 +5,8 @@ resource "aws_db_instance" "mysql" {
   engine_version         = "5.7"
   instance_class         = "db.t3.micro"
   name                   = "dummy"
-  username               = jsoncode(data.aws_secretsmanager_secret_version.secrets-version.secret_string)["RDS_MYSQL_USER"]
-  password               = jsoncode(data.aws_secretsmanager_secret_version.secrets-version.secret_string)["RDS_MYSQL_PASS"]
+  username               = jsondecode(data.aws_secretsmanager_secret_version.secrets-version.secret_string)["RDS_MYSQL_USER"]
+  password               = jsondecode(data.aws_secretsmanager_secret_version.secrets-version.secret_string)["RDS_MYSQL_PASS"]
   parameter_group_name   = aws_db_parameter_group.pg.name
   skip_final_snapshot    = true
 }
