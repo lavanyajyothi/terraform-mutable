@@ -25,4 +25,4 @@
   tags = {
     Name = "mysqldb-subnet-group-${var.ENV}"
   }
-}
+ }
