@@ -7,3 +7,10 @@ data "terraform_remote_state" "vpc" {
   }
 }
 
+data "aws_secretsmanager_secret" "secrets" {
+  name = var.ENV
+}
+
+output "sec" {
+  value = aws__secretmanager_secret.secrets
+}
