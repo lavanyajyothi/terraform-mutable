@@ -12,6 +12,6 @@ data "aws_secretsmanager_secret" "secrets" {
 }
 
 output "sec" {
-  value = aws_secretsmanager_secret.secrets
+  value = data.aws_secretsmanager_secret.secrets
 }
 
