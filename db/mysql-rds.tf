@@ -13,7 +13,6 @@
 ##  db_subnet_group_name   = aws_db_subnet_group.subnet-group.name
 ## }
 
-
  resource "aws_db_parameter_group" "pg" {
   name   = "mysql-${var.ENV}-pg"
   family = "mysql5.7"
