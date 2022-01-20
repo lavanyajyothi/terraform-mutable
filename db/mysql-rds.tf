@@ -22,7 +22,7 @@ resource "aws_db_instance" "mysql" {
   password               = local.rds_pass
   parameter_group_name   = aws_db_parameter_group.pg.name
   skip_final_snapshot    = true
-  vpc_security_group_ids = [aws_db_security_group.mysql.id]
+  vpc_security_group_ids = [aws_security_group.mysql.id]
 }
 
 #resource "aws_db_security_group" "mysql" {
@@ -39,6 +39,8 @@ resource "aws_db_instance" "mysql" {
 resource "aws_security_group" "mysql" {
   name        = "mysql-${var.ENV}"
   description = "mysql-${var.ENV}"
+  vpc_id      = data.terraform_remote_state.vpc.outputs.VPC_ID
+
 
   ingress = [
     {
