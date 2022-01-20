@@ -9,6 +9,8 @@ output "all_vpc" {
   value  =  local.ALL_CIDR
 }
 
+
+
 resource "aws_db_instance" "mysql" {
   allocated_storage      = 10
   identifier             = "mysql-${var.ENV}"
