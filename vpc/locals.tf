@@ -1,8 +1,16 @@
 locals {
-  DEFAULT_VPC_CIDR = split(",", data.terraform_remote_state.vpc.outputs.DEFAULT_VPC_CIDR)
-  ALL_CIDR         = concat(data.terraform_remote_state.vpc.outputs.ALL_VPC_CIDR, local.DEFAULT_VPC_CIDR)
-  ssh_user         = jsondecode(data.aws_secretsmanager_secret_version.secrets-version.secret_string)["SSH_USER"]
-  ssh_pass         = jsondecode(data.aws_secretsmanager_secret_version.secrets-version.secret_string)["SSH_PASS"]
+  VPC_CIDR_MAIN = split(",", var.VPC_CIDR_MAIN)
+  ALL_VPC_CIDR  = concat(local.VPC_CIDR_MAIN, var.VPC_CIDR_ADDON)
 }
 
+locals {
+  association-list = flatten([
+    for cidr in local.ALL_VPC_CIDR : [
+      for route_table in tolist(data.aws_route_tables.default-vpc-routes.ids) : {
+        cidr        = cidr
+        route_table = route_table
+      }
+    ]
+  ])
+}
 
