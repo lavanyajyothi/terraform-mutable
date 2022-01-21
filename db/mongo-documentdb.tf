@@ -32,6 +32,7 @@ resource "aws_docdb_cluster_parameter_group" "pg" {
   description = "mongodb-parameter-group-${var.ENV}"
 }
 
+
 resource "aws_security_group" "mongodb" {
   name        = "mongodb-${var.ENV}"
   description = "mongodb-${var.ENV}"
