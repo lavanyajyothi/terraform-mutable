@@ -11,3 +11,4 @@ resource "aws_docdb_cluster" "docdb" {
   master_password         = local.mongo_pass
   skip_final_snapshot     = true
 }
+
