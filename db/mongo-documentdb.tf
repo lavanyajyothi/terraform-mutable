@@ -12,3 +12,4 @@ resource "aws_docdb_cluster" "docdb" {
   skip_final_snapshot     = true
 }
 
+
