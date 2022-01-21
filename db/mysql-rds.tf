@@ -39,8 +39,6 @@ resource "aws_db_instance" "mysql" {
 resource "aws_security_group" "mysql" {
   name        = "mysql-${var.ENV}"
   description = "mysql-${var.ENV}"
-  vpc_id      = data.terraform_remote_state.vpc.outputs.VPC_ID
-
 
   ingress = [
     {
@@ -75,6 +73,7 @@ resource "aws_security_group" "mysql" {
   }
 }
 
+
 resource "aws_db_parameter_group" "pg" {
   name   = "mysql-${var.ENV}-pg"
   family = "mysql5.7"
@@ -97,15 +96,15 @@ resource "aws_route53_record" "mysql" {
   records = [aws_db_instance.mysql.address]
 }
 
-resource "null_resource" "schema-apply" {
-  //depends_on = [aws_route53_record.mysql]
-  provisioner "local-exec" {
-    command = <<EOF
-sudo yum install mariadb -y
-curl -s -L -o /tmp/mysql.zip "https://github.com/roboshop-devops-project/mysql/archive/main.zip"
-cd /tmp
-unzip -o /tmp/mysql.zip
-mysql -h${aws_db_instance.mysql.address} -u${local.rds_user} -p${local.rds_pass} <mysql-main/shipping.sql
-EOF
-  }
-}
+#resource "null_resource" "schema-apply" {
+#  //depends_on = [aws_route53_record.mysql]
+#  provisioner "local-exec" {
+#    command = <<EOF
+#sudo yum install mariadb -y
+#curl -s -L -o /tmp/mysql.zip "https://github.com/roboshop-devops-project/mysql/archive/main.zip"
+#cd /tmp
+#unzip -o /tmp/mysql.zip
+#mysql -h${aws_db_instance.mysql.address} -u${local.rds_user} -p${local.rds_pass} <mysql-main/shipping.sql
+#EOF
+#  }
+#}
