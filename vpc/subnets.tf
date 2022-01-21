@@ -21,6 +21,7 @@ resource "aws_subnet" "public-subnets" {
   }
 }
 
+
 resource "aws_route_table_association" "priv-assoc" {
   count          = length(aws_subnet.private-subnets.*.id)
   subnet_id      = element(aws_subnet.private-subnets.*.id, count.index)
