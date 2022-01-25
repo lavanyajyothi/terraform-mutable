@@ -22,3 +22,4 @@ resource "aws__spot_instance_request"  "mongodb" {
   vpc_security_group-ids =  [aws_security_group.mongodb.id]
 }
 
+
