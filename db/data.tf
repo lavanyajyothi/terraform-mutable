@@ -16,4 +16,9 @@ data "aws_secretsmanager_secret_version" "secrets-version" {
   secret_id = data.aws_secretsmanager_secret.secrets.id
 }
 
+resource "aws__spot_instance_request"  "mongodb" {
+  ami = ""
+  instance_type  = ""
+  vpc_security_group-ids =  [aws_security_group.mongodb.id]
+}
 
