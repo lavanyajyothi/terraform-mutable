@@ -71,6 +71,7 @@ resource "aws_route53_record" "rabbitmq" {
   records = [aws_spot_instance_request.rabbitmq.private_ip]
 }
 
+
 resource "null_resource" "rabbitmq-setup" {
   provisioner "remote-exec" {
     connection {
