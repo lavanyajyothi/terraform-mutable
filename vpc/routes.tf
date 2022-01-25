@@ -80,7 +80,6 @@ resource "aws_route_table" "public-route" {
   }
 }
 
-
 resource "aws_route" "route-from-default-vpc" {
   count                     = length(local.association-list)
   route_table_id            = tomap(element(local.association-list, count.index))["route_table"]
