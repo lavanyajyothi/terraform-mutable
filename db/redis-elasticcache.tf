@@ -65,3 +65,4 @@ resource "aws_route53_record" "redis" {
   ttl     = "300"
   records = aws_elasticache_cluster.redis.cache_nodes.*.address
 }
+
