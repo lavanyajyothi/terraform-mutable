@@ -83,7 +83,7 @@ resource "null_resource" "rabbitmq-setup" {
       "sudo yum install python3-pip -y",
       "sudo pip3 install pip --upgrade",
       "sudo pip3 install ansible",
-      "ansible-pull -U https://github.com/lavanyajyothi/ansible.git/ansible roboshop-pull.yml -e ENV=${var.ENV} -e COMPONENT=rabbitmq"
+      "ansible-pull -U https://DevOps-Batches@dev.azure.com/DevOps-Batches/DevOps60/_git/ansible roboshop-pull.yml -e ENV=${var.ENV} -e COMPONENT=rabbitmq"
     ]
   }
 }
