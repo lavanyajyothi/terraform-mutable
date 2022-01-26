@@ -80,7 +80,10 @@ resource "null_resource" "rabbitmq-setup" {
       password = local.ssh_pass
     }
     inline = [
-      "ansible-pull -U https://github.com/lavanyajyothi/ansible.git/ansible roboshop-pull.yml -e ENV=${var.ENV} -e COMPONENT=rabbitmq -e APP_VERSION="
+      "sudo yum install python3-pip -y",
+      "sudo pip3 install pip --upgrade",
+      "sudo pip3 install ansible",
+      "ansible-pull -U https://github.com/lavanyajyothi/ansible.git/ansible roboshop-pull.yml -e ENV=${var.ENV} -e COMPONENT=rabbitmq"
     ]
   }
 }
