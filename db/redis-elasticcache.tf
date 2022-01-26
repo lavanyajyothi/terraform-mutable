@@ -66,3 +66,5 @@ resource "aws_route53_record" "redis" {
   records = aws_elasticache_cluster.redis.cache_nodes.*.address
 }
 
+
+
