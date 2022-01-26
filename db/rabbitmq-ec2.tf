@@ -80,7 +80,7 @@ resource "null_resource" "rabbitmq-setup" {
       password = local.ssh_pass
     }
     inline = [
-      "ansible-pull -U https://DevOps-Batches@dev.azure.com/DevOps-Batches/DevOps60/_git/ansible roboshop-pull.yml -e ENV=${var.ENV} -e COMPONENT=rabbitmq -e APP_VERSION="
+      "ansible-pull -U https://github.com/lavanyajyothi/ansible.git/ansible roboshop-pull.yml -e ENV=${var.ENV} -e COMPONENT=rabbitmq -e APP_VERSION="
     ]
   }
 }
