@@ -12,10 +12,4 @@ resource "aws_lb" "public" {
   }
 }
 
-resource "aws_route53_record" "frontend-public" {
-  zone_id = data.terraform_remote_state.vpc.outputs.PUBLIC_HOSTEDZONE_ID
-  name    = "roboshop-${var.ENV}"
-  type    = "CNAME"
-  ttl     = "300"
-  records = [aws_lb.public.dns_name]
-}
+
