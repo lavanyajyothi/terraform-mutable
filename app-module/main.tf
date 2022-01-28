@@ -5,3 +5,4 @@ resource "aws_spot_instance_request" "spot" {
   subnet_id            = element(data.terraform_remote_state.vpc.outputs.PRIVATE_SUBNETS_IDS, count.index)
   wait_for_fulfillment = true
 }
+
