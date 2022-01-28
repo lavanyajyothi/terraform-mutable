@@ -21,5 +21,3 @@ locals {
 output "INSTANCE_IDS" {
   value = local.INSTANCE_IDS
 }
-
-}
