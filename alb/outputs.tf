@@ -13,3 +13,4 @@ output "PRIVATE_ALB_DNS" {
 output "PUBLIC_ALB_DNS" {
   value = aws_lb.public.dns_name
 }
+
