@@ -54,6 +54,7 @@ resource "aws_lb_listener_rule" "public" {
   }
 }
 
+
 resource "aws_lb_listener" "private_listener" {
   count             = var.IS_PRIVATE_LB ? 0 : 1
   load_balancer_arn = data.terraform_remote_state.alb.outputs.PUBLIC_ALB_ARN
