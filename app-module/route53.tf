@@ -5,3 +5,4 @@ resource "aws_route53_record" "record" {
   type    = "CNAME"
   ttl     = "300"
   records = [data.terraform_remote_state.alb.outputs.PRIVATE_ALB_DNS]
+
