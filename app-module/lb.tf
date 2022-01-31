@@ -23,7 +23,7 @@ resource "aws_lb_target_group_attachment" "tg-attach" {
 resource "aws_lb_listener_rule" "private" {
   count        = var.IS_PRIVATE_LB ? 1 : 0
   listener_arn = data.terraform_remote_state.alb.outputs.PRIVATE_LISTENER_ARN
-  priority     = var.LB_RULE_PRIORITY
+  priority     = 100
 
   action {
     type             = "forward"
