@@ -15,6 +15,8 @@ pipeline {
       steps {
         sh '''
           cd db
+          rm -rf mongo-documentdb.tf
+          terraform init
           make dev-apply
         '''
       }
