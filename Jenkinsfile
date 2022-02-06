@@ -30,17 +30,18 @@ pipeline {
         '''
       }
     }
-
-    stage('db') {
-      when {
-        beforeInput true
-        branch 'production'
+    stage('DB & ALB') {
+      parallel {
+        stage('db') {
+        when {
+          beforeInput true
+          branch 'production'
       }
-      input {
-        message "Should we continue?"
-        ok "Yes, we should."
-        submitter "admin"
-      }
+        input {
+          message "Should we continue?"
+          ok "Yes, we should."
+          submitter "admin"
+        }
       steps {
         sh '''
           cd db
