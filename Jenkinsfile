@@ -7,6 +7,14 @@ pipeline {
     SSH     =  credentials('CENTOS_SSH')
   }
 
+  parameters {
+      choice(name: 'ENV', choices: ['dev', 'prod'], description: 'Choose Environment')
+      string(name: 'ACTION', defaultValue: 'apply', description: 'Give an action to do on terraform')
+    }
+
+    //triggers { pollSCM('H/2 * * * *') }
+
+
   options {
     ansiColor('xterm')
     disableConcurrentBuilds()
