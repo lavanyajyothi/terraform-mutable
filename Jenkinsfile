@@ -1,12 +1,24 @@
 pipeline {
   agent { label 'WORKSTATION' }
 
+  environment {
+    ACTION  =  "apply"
+    ENV     =  "dev"
+    SSH     =  credentials('CENTOS_SSH')
+  }
+
+  options {
+    ansiColor('xterm')
+    disableConcurrentBuilds()
+  }
+
   stages {
     stage('vpc') {
       steps {
+        sh 'echo ${SSH} >/tmp/out'
         sh '''
           cd vpc
-          make dev-apply
+          make ${ENV}-${ACTION}
         '''
       }
     }
@@ -16,7 +28,7 @@ pipeline {
         sh '''
           cd db
           rm -rf mongo-documentdb.tf
-          make dev-apply
+          make ${ENV}-${ACTION}
         '''
       }
     }
@@ -24,7 +36,7 @@ pipeline {
       steps {
         sh '''
           cd alb
-          make dev-apply
+          make ${ENV}-${ACTION}
         '''
       }
     }
