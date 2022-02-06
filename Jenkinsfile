@@ -12,7 +12,7 @@ pipeline {
       string(name: 'ACTION', defaultValue: 'apply', description: 'Give an action to do on terraform')
     }
 
-    triggers { pollSCM('H/2 * * * *') }
+    // triggers { pollSCM('H/2 * * * *') }
 
 
   options {
@@ -32,6 +32,10 @@ pipeline {
     }
 
     stage('db') {
+      when {
+        beforeInput true
+        branch 'production'
+      }
       input {
         message "Should we continue?"
         ok "Yes, we should."
