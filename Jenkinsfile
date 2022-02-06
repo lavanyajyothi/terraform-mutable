@@ -10,7 +10,7 @@ pipeline {
   parameters {
       choice(name: 'ENV', choices: ['dev', 'prod'], description: 'Choose Environment')
       string(name: 'ACTION', defaultValue: 'apply', description: 'Give an action to do on terraform')
-    }
+  }
 
     // triggers { pollSCM('H/2 * * * *') }
 
@@ -36,27 +36,28 @@ pipeline {
         when {
           beforeInput true
           branch 'production'
-      }
+        }
         input {
           message "Should we continue?"
           ok "Yes, we should."
           submitter "admin"
         }
-      steps {
-        sh '''
-          cd db
-          rm -rf mongo-documentdb.tf
-          make ${ENV}-${ACTION}
-        '''
+          steps {
+            sh '''
+            cd db
+            rm -rf mongo-documentdb.tf
+            make ${ENV}-${ACTION}
+          '''
+          }
+        }
+        stage('ALB') {
+          steps {
+            sh '''
+            cd alb
+            make ${ENV}-${ACTION}
+          '''
+          }
+        }
       }
-    }
-    stage('ALB') {
-      steps {
-        sh '''
-          cd alb
-          make ${ENV}-${ACTION}
-        '''
-      }
-    }
   }
 }
